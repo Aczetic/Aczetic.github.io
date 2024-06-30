@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+    </style>
+    <link rel="icon" href="./render.png" />
+    <title>BookStoria</title>
+  </head>
+  <body>
+    <div id="form" class="">
+      <span id="formCloseButton" onclick="toggleForm(0)"></span>
+      <h2>Login</h2>
+      <form action="#">
+        <div id="dataFieldContainer">
+          <div
+            class="fieldSet"
+            id="Username"
+            style="display: none; transition: 0.5s"
+          >
+            <span class="icon" style="background-image: url(./user.png)"></span>
+            <input id="user" type="text" required placeholder=" " />
+            <label>Username</label>
+          </div>
+          <div class="fieldSet" id="Email">
+            <span class="icon" style="background-image: url(./mail.png)"></span>
+            <input id="email" type="email" placeholder=" " required />
+            <label>Email</label>
+          </div>
+          <div class="fieldSet" id="Password">
+            <input id="password" type="password" placeholder=" " />
+            <label>Password</label>
+            <span
+              class="icon"
+              style="background-image: url(./eyeClosed.svg)"
+              onclick="toggleIcon(event)"
+            ></span>
+          </div>
+        </div>
+        <button id="Login">Submit</button>
+        <h4>
+          <a href="#">Forgot password?</a>
+          <a href="#" onclick="setForm()">Register</a>
+        </h4>
+      </form>
+    </div>
+    <div id="head">
+      <div id="header">
+        <div class="logo"></div>
+        <div id="nav">
+          <div>
+            <a
+              href="#"
+              style="
+                text-decoration: underline;
+                font-weight: bolder;
+                color: #8c4c34;
+              "
+              >Home</a
+            >
+          </div>
+          <div><a href="#">Catalogue</a></div>
+          <div><a href="#">Cart</a></div>
+        </div>
+        <div id="reglog">
+          <div id="signup">
+            <button onclick="toggleForm(1) , setForm(false)">Sign Up</button>
+          </div>
+          <div id="login">
+            <button onclick="toggleForm(1) , setForm(true)">Login</button>
+          </div>
+        </div>
+      </div>
+      <div id="banner">
+        <div id="bannerDescription">
+          <span>
+            <i
+              >The Theory of Relative is Very Difficult to Understand when you
+              try to learn it </i
+            ><br />
+            <b>-Albert Einstein</b></span
+          >
+        </div>
+        <div id="bannerIllustration"></div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div id="social">
+        <div
+          class="logo"
+          style="height: 50px; background-image: url(./footerLogo.png)"
+        ></div>
+        <div id="socialIcons">
+          <div
+            class="icon"
+            style="background-image: url(./socialIcons/facebook.png)"
+          ></div>
+          <div
+            class="icon"
+            style="background-image: url(./socialIcons/google.png)"
+          ></div>
+          <div
+            class="icon"
+            style="background-image: url(./socialIcons/instagram.png)"
+          ></div>
+          <div
+            class="icon"
+            style="
+              background-image: url(./socialIcons/twitter.png);
+              transform: scale(1.1);
+            "
+          ></div>
+        </div>
+      </div>
+      <div id="footerDescription">
+        <h2>Contact Us</h2>
+        <br />
+        Phone : +91 1234567890 <br />
+        Email : contact@bookstoria.com <br />Address: Knowledge Park 3 Greakter
+        Noida 201306
+      </div>
+    </div>
+
+    <script>
+      let iconArray = ["./eyeOpened", "./eyeClosed"];
+      let index = 0;
+
+      function toggleIcon(event) {
+        index = index++ % 2;
+        event.target.style.backgroundImage = `url(${iconArray[index]}.svg)`;
+        let elem = document.getElementById("password");
+
+        elem.setAttribute(
+          "type",
+          elem.getAttribute("type") == "password" ? "text" : "password"
+        );
+      }
+
+      function toggleForm(setState) {
+        document.getElementById("form").style.transform = `scale(${parseInt(
+          setState
+        )})`;
+      }
+
+      function setForm(isLogin) {
+        let formElem = document.querySelector("#form");
+        let username = document.querySelector("#Username");
+        let a = document
+          .getElementById("form")
+          .getElementsByTagName("h4")[0]
+          .getElementsByTagName("a")[1];
+        let h2 = document.getElementById("form").getElementsByTagName("h2")[0];
+
+        if (isLogin) {
+          formElem.setAttribute("class", "formLogin");
+          username.style.display = "none";
+          a.innerText = "Register";
+          h2.innerText = "Login";
+        } else {
+          formElem.setAttribute("class", "formSignup");
+          username.style.display = "block";
+          a.innerText = "";
+          h2.innerText = "Register";
+        }
+      }
+    </script>
+  </body>
+</html>
